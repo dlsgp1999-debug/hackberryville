@@ -561,38 +561,81 @@
         }
 
         @media (max-width: 1024px) {
-            .tickets-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .tickets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-        @media (max-width: 640px) {
-            .login-card {
-                padding: 40px 30px;
-            }
+@media (max-width: 768px) {
+    /* 로그인 화면 */
+    .login-card {
+        padding: 40px 24px;
+    }
 
-            .tickets-grid {
-                grid-template-columns: 1fr;
-            }
+    .logo-section h1 {
+        font-size: 26px;
+    }
 
-            .header-content {
-                flex-direction: column;
-                gap: 16px;
-                align-items: flex-start;
-            }
+    .form-input {
+        padding: 18px 20px;
+        font-size: 17px;
+    }
 
-            .welcome-section {
-                padding: 32px 24px;
-            }
+    .btn-login {
+        padding: 20px;
+        font-size: 18px;
+    }
 
-            .welcome-section h2 {
-                font-size: 24px;
-            }
-        }
+    /* 대시보드 */
+    .dashboard-main {
+        padding: 24px 20px;
+    }
+
+    .welcome-section {
+        padding: 32px 24px;
+    }
+
+    .welcome-section h2 {
+        font-size: 28px;
+    }
+
+    /* 이용권 카드 */
+    .tickets-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .ticket-card {
+        padding: 24px 16px;
+    }
+
+    .ticket-icon {
+        font-size: 40px;
+    }
+
+    .ticket-count {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* 작은 모바일 */
+    .tickets-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ticket-icon {
+        font-size: 44px;
+    }
+
+    .ticket-count {
+        font-size: 40px;
+    }
+}
     </style>
 </head>
 <body>
