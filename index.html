@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Hackberryville Memberships</title>
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -560,82 +560,232 @@
             color: var(--text-gray);
         }
 
+        /* 모바일 최적화 */
         @media (max-width: 1024px) {
-    .tickets-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-}
+            .tickets-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-@media (max-width: 768px) {
-    /* 로그인 화면 */
-    .login-card {
-        padding: 40px 24px;
-    }
+        @media (max-width: 768px) {
+            /* 로그인 화면 모바일 최적화 */
+            .login-card {
+                padding: 40px 24px;
+                max-width: 100%;
+            }
 
-    .logo-section h1 {
-        font-size: 26px;
-    }
+            .logo-section h1 {
+                font-size: 26px;
+            }
 
-    .form-input {
-        padding: 18px 20px;
-        font-size: 17px;
-    }
+            .logo-section p {
+                font-size: 14px;
+            }
 
-    .btn-login {
-        padding: 20px;
-        font-size: 18px;
-    }
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
 
-    /* 대시보드 */
-    .dashboard-main {
-        padding: 24px 20px;
-    }
+            .form-label {
+                font-size: 15px;
+            }
 
-    .welcome-section {
-        padding: 32px 24px;
-    }
+            .form-input {
+                padding: 18px 20px;
+                font-size: 17px;
+            }
 
-    .welcome-section h2 {
-        font-size: 28px;
-    }
+            .btn-login {
+                padding: 20px;
+                font-size: 18px;
+            }
 
-    /* 이용권 카드 */
-    .tickets-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
+            /* 대시보드 헤더 */
+            .dashboard-header {
+                padding: 20px 0;
+            }
 
-    .ticket-card {
-        padding: 24px 16px;
-    }
+            .header-content {
+                padding: 0 20px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-    .ticket-icon {
-        font-size: 40px;
-    }
+            .header-title h1 {
+                font-size: 18px;
+            }
 
-    .ticket-count {
-        font-size: 36px;
-    }
-}
+            .header-title p {
+                font-size: 12px;
+            }
 
-@media (max-width: 480px) {
-    /* 작은 모바일 */
-    .tickets-grid {
-        grid-template-columns: 1fr;
-    }
+            .btn-logout {
+                padding: 8px 20px;
+                font-size: 13px;
+            }
 
-    .ticket-icon {
-        font-size: 44px;
-    }
+            /* 대시보드 메인 */
+            .dashboard-main {
+                padding: 24px 20px;
+            }
 
-    .ticket-count {
-        font-size: 40px;
-    }
-}
+            /* 환영 섹션 */
+            .welcome-section {
+                padding: 32px 24px;
+            }
+
+            .welcome-section h2 {
+                font-size: 28px;
+            }
+
+            .welcome-section p {
+                font-size: 16px;
+            }
+
+            /* 회원 정보 카드 */
+            .member-info-card {
+                padding: 24px;
+            }
+
+            .member-info-card h3 {
+                font-size: 18px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .info-item {
+                padding: 16px 0;
+            }
+
+            .info-label {
+                font-size: 13px;
+            }
+
+            .info-value {
+                font-size: 18px;
+            }
+
+            /* 이용권 섹션 */
+            .tickets-section h3 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .tickets-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .ticket-card {
+                padding: 24px 16px;
+            }
+
+            .ticket-icon {
+                font-size: 40px;
+                margin-bottom: 12px;
+            }
+
+            .ticket-name {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+
+            .ticket-count {
+                font-size: 36px;
+                margin-bottom: 6px;
+            }
+
+            .ticket-total {
+                font-size: 12px;
+            }
+
+            /* 이용 내역 */
+            .history-section {
+                padding: 24px;
+            }
+
+            .history-section h3 {
+                font-size: 18px;
+            }
+
+            .history-item {
+                padding: 16px;
+            }
+
+            .history-date {
+                font-size: 12px;
+            }
+
+            .history-type {
+                font-size: 16px;
+            }
+
+            .history-memo {
+                font-size: 14px;
+            }
+
+            /* 예약 버튼 */
+            .btn-reservation {
+                padding: 20px;
+                font-size: 17px;
+            }
+
+            .reservation-icon {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* 작은 모바일 (아이폰 SE 등) */
+            .login-card {
+                padding: 32px 20px;
+            }
+
+            .logo-section h1 {
+                font-size: 24px;
+            }
+
+            .form-input {
+                padding: 16px 18px;
+                font-size: 16px;
+            }
+
+            .btn-login {
+                padding: 18px;
+                font-size: 17px;
+            }
+
+            /* 이용권 카드 1열로 */
+            .tickets-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .ticket-card {
+                padding: 28px 20px;
+            }
+
+            .ticket-icon {
+                font-size: 44px;
+            }
+
+            .ticket-count {
+                font-size: 40px;
+            }
+
+            .welcome-section h2 {
+                font-size: 26px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -643,7 +793,7 @@
     <div id="loginScreen" class="login-container">
         <div class="login-card">
             <div class="logo-section">
-                <img src="logo-file.png" alt="하크베리빌" class="logo-image">
+                <img src="logo-file.png" alt="하크베리빌" class="logo-icon">
                 <h1>하크베리빌 멤버십 조회</h1>
                 <p>Hackberryville Memberships</p>
             </div>
@@ -837,7 +987,6 @@
         }
 
         function goToReservation() {
-            // 예약 페이지 URL을 입력하세요
             const reservationURL = 'https://docs.google.com/forms/d/e/1FAIpQLSdpvV04V4FqFnDUeUuPypmfOra-mE0XW1cx7wuSSGx0etyyiQ/viewform?usp=dialog';
             window.open(reservationURL, '_blank');
         }
