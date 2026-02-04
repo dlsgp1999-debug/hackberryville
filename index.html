@@ -560,6 +560,180 @@
             color: var(--text-gray);
         }
 
+        /* 카페 할인권 사용 버튼 */
+        .btn-use-ticket {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-use-ticket:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-use-ticket:active {
+            transform: translateY(0);
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .modal-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid #F5F5F7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--text-gray);
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-body {
+            padding: 28px;
+        }
+
+        .modal-instruction {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 18px 20px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            color: var(--text-dark);
+            font-size: 18px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            text-align: center;
+            letter-spacing: 0.5em;
+        }
+
+        .modal-input:focus {
+            outline: none;
+            background: var(--bg-white);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(107, 155, 101, 0.15);
+        }
+
+        .modal-footer {
+            padding: 20px 28px 24px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-modal-cancel,
+        .btn-modal-confirm {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modal-cancel {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .btn-modal-cancel:hover {
+            background: #E5E5E7;
+        }
+
+        .btn-modal-confirm {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-modal-confirm:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-modal-confirm:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .modal-message {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .modal-message.success {
+            background: #EDF7F0;
+            color: #1F7A3E;
+        }
+
+        .modal-message.error {
+            background: #FFF0EE;
+            color: #D1342F;
+        }
+
         /* 모바일 최적화 */
         @media (max-width: 1024px) {
             .tickets-grid {
@@ -785,6 +959,38 @@
             .welcome-section h2 {
                 font-size: 26px;
             }
+
+            /* 모달 모바일 최적화 */
+            .modal-content {
+                width: 95%;
+                margin: 20px;
+            }
+
+            .modal-header {
+                padding: 20px;
+            }
+
+            .modal-header h2 {
+                font-size: 20px;
+            }
+
+            .modal-body {
+                padding: 24px 20px;
+            }
+
+            .modal-input {
+                font-size: 16px;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+                padding: 16px 20px 20px;
+            }
+
+            .btn-modal-cancel,
+            .btn-modal-confirm {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -876,11 +1082,12 @@
                         <div class="ticket-total">총 <span id="fireTotal">15</span>회</div>
                     </div>
 
-                    <div class="ticket-card">
+                    <div class="ticket-card cafe-card">
                         <span class="ticket-icon">☕</span>
                         <div class="ticket-name">카페할인권</div>
                         <div class="ticket-count" id="cafeRemain">20</div>
                         <div class="ticket-total">총 <span id="cafeTotal">20</span>회</div>
+                        <button class="btn-use-ticket" onclick="showCafeModal()">사용하기</button>
                     </div>
                 </div>
             </div>
@@ -904,8 +1111,27 @@
         </main>
     </div>
 
+    <!-- 카페 할인권 사용 모달 -->
+    <div id="cafeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>☕ 카페 할인권 사용</h2>
+                <button class="modal-close" onclick="closeCafeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-instruction">직원 비밀번호를 입력하세요</p>
+                <input type="password" id="staffPassword" class="modal-input" placeholder="직원 비밀번호" autocomplete="off">
+                <div id="modalMessage"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-cancel" onclick="closeCafeModal()">취소</button>
+                <button class="btn-modal-confirm" onclick="confirmCafeUse()">확인</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDXxEJu1Nbr_OECyfHiMn4VuIM__Askh2aiZJ3kT-VpU6HVo8MzsHlULanAJy8wKdbMQ/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqUfaJrI5xraw1xfzRhHEPLpPmRG-AelOtsbeiwExcaYPIIXkruzVnP2o3w4rg-wR41Q/exec';
 
         function showMessage(message, type) {
             const msgArea = document.getElementById('messageArea');
@@ -929,6 +1155,8 @@
                 const data = await response.json();
 
                 if (data.success) {
+                    // 회원 데이터에 비밀번호 추가 (이용내역 새로고침용)
+                    data.member.password = password;
                     sessionStorage.setItem('currentMember', JSON.stringify(data.member));
                     loadDashboard(data.member, data.history);
                     
@@ -990,6 +1218,125 @@
             const reservationURL = 'https://docs.google.com/forms/d/e/1FAIpQLSdpvV04V4FqFnDUeUuPypmfOra-mE0XW1cx7wuSSGx0etyyiQ/viewform?usp=dialog';
             window.open(reservationURL, '_blank');
         }
+
+        // 카페 할인권 사용 모달
+        function showCafeModal() {
+            const cafeRemain = parseInt(document.getElementById('cafeRemain').textContent);
+            
+            if (cafeRemain <= 0) {
+                alert('카페할인권 잔여 횟수가 없습니다.');
+                return;
+            }
+            
+            document.getElementById('cafeModal').classList.add('active');
+            document.getElementById('staffPassword').value = '';
+            document.getElementById('modalMessage').innerHTML = '';
+            setTimeout(() => {
+                document.getElementById('staffPassword').focus();
+            }, 100);
+        }
+
+        function closeCafeModal() {
+            document.getElementById('cafeModal').classList.remove('active');
+            document.getElementById('staffPassword').value = '';
+            document.getElementById('modalMessage').innerHTML = '';
+        }
+
+        async function confirmCafeUse() {
+            const cafePassword = document.getElementById('staffPassword').value.trim();
+            const member = JSON.parse(sessionStorage.getItem('currentMember'));
+            const modalMessage = document.getElementById('modalMessage');
+            const confirmBtn = document.querySelector('.btn-modal-confirm');
+            
+            if (!cafePassword) {
+                modalMessage.innerHTML = '<div class="modal-message error">비밀번호를 입력하세요</div>';
+                return;
+            }
+
+            if (!member) {
+                modalMessage.innerHTML = '<div class="modal-message error">세션이 만료되었습니다</div>';
+                return;
+            }
+
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = '처리 중...';
+
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=useCafeDiscount&memberId=${member.id}&cafePassword=${cafePassword}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    modalMessage.innerHTML = `
+                        <div class="modal-message success">
+                            ✅ 할인권 사용 완료!<br>
+                            ${data.memberName}님 잔여: ${data.remainAfter}회
+                        </div>
+                    `;
+                    
+                    // 화면 업데이트
+                    setTimeout(() => {
+                        document.getElementById('cafeRemain').textContent = data.remainAfter;
+                        closeCafeModal();
+                        
+                        // 이용 내역 새로고침 - 회원 본인 비밀번호 필요
+                        const savedMember = sessionStorage.getItem('currentMember');
+                        const memberData = JSON.parse(savedMember);
+                        refreshHistory(memberData.id, memberData.password);
+                    }, 1500);
+                } else {
+                    modalMessage.innerHTML = `<div class="modal-message error">${data.message}</div>`;
+                    confirmBtn.disabled = false;
+                    confirmBtn.textContent = '확인';
+                }
+            } catch (error) {
+                modalMessage.innerHTML = '<div class="modal-message error">서버 연결에 실패했습니다</div>';
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = '확인';
+                console.error(error);
+            }
+        }
+
+        async function refreshHistory(memberId, password) {
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=login&memberId=${memberId}&password=${password}`);
+                const data = await response.json();
+
+                if (data.success && data.history) {
+                    const historyList = document.getElementById('historyList');
+                    if (data.history.length > 0) {
+                        historyList.innerHTML = data.history.map(item => `
+                            <div class="history-item">
+                                <div class="history-date">${item.date}</div>
+                                <div class="history-type">${item.type} ${item.count}회 사용</div>
+                                ${item.memo ? `<div class="history-memo">${item.memo}</div>` : ''}
+                            </div>
+                        `).join('');
+                    }
+                }
+            } catch (error) {
+                console.error('이용 내역 새로고침 실패:', error);
+            }
+        }
+
+        // 모달 외부 클릭 시 닫기
+        window.onclick = function(event) {
+            const modal = document.getElementById('cafeModal');
+            if (event.target === modal) {
+                closeCafeModal();
+            }
+        }
+
+        // Enter 키로 확인
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('staffPassword');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        confirmCafeUse();
+                    }
+                });
+            }
+        });
 
         window.onload = function() {
             const saved = sessionStorage.getItem('currentMember');
